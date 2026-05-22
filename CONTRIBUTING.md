@@ -17,7 +17,7 @@ Thank you for your interest in contributing to NullForge. This guide covers ever
 ### 2. Clone and install
 
 ```bash
-git clone https://github.com/nullforge/nullforge.git
+git clone https://github.com/JoasASantos/NullForge.git
 cd nullforge
 pnpm install
 ```
@@ -184,6 +184,6 @@ Full plugin API documentation is available in `docs/plugin-sdk.md` (coming soon)
 
 ## Getting Help
 
-- Open a [GitHub Discussion](https://github.com/nullforge/nullforge/discussions) for questions
-- Open an [Issue](https://github.com/nullforge/nullforge/issues) for bugs
+- Open a [GitHub Discussion](https://github.com/JoasASantos/NullForge/discussions) for questions
+- Open an [Issue](https://github.com/JoasASantos/NullForge/issues) for bugs
 - Tag PRs with the appropriate area label: `area:ai`, `area:editor`, `area:debugger`, `area:shell`, `area:network`, `area:plugins`

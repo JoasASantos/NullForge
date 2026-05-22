@@ -1,7 +1,7 @@
 # NullForge Documentation
 
 > **AI-Powered Exploit Development Platform**  
-> Created by **Joas A Santos** — [Null Forge](https://github.com/NullForge)
+> Created by **Joas A Santos** — [Null Forge](https://github.com/JoasASantos/NullForge)
 
 ---
 

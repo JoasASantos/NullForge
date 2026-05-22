@@ -52,7 +52,7 @@ NullForge is an open-source, AI-native IDE for security researchers, red team op
 ### Installation
 
 ```bash
-git clone https://github.com/nullforge/nullforge.git
+git clone https://github.com/JoasASantos/NullForge.git
 cd nullforge
 
 # Install JavaScript dependencies
