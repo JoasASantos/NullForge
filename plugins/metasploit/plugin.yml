@@ -1,0 +1,35 @@
+name: Metasploit Connector
+id: nullforge.metasploit-connector
+version: 1.2.0
+author: Red Team Leaders
+description: Connect to Metasploit Framework via msfrpc, run modules, manage sessions, enumerate hosts and loot
+icon: shield-half
+license: MIT
+repository: https://github.com/redteamleaders/nullforge-msf
+homepage: https://nullforge.dev/plugins/metasploit
+
+activationEvents:
+  - onCommand:msf.connect
+
+contributes:
+  commands:
+    - id: msf.connect
+      title: "Metasploit: Connect to msfrpc"
+    - id: msf.runModule
+      title: "Metasploit: Run Module"
+    - id: msf.listSessions
+      title: "Metasploit: List Sessions"
+    - id: msf.sessionInteract
+      title: "Metasploit: Interact with Session"
+  panels:
+    - id: msfSessions
+      title: "MSF Sessions"
+      location: bottom
+    - id: msfModules
+      title: "MSF Modules"
+      location: sidebar
+
+permissions:
+  - shell
+  - network
+  - aiContext

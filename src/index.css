@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── Dark theme (default) ────────────────────────────────────────────────── */
+  :root {
+    /* Surfaces */
+    --bg-base:      #0d0f14;
+    --bg-surface:   #141720;
+    --bg-elevated:  #1a1f2e;
+    --bg-overlay:   #212636;
+
+    /* Borders */
+    --border:       #1e2330;
+    --border-focus: #38bdf8;
+
+    /* Text */
+    --text-primary: #e2e8f0;
+    --text-muted:   #64748b;
+    --text-dim:     #475569;
+
+    /* Semantic accent colors */
+    --accent-red:    #e63946;   /* danger / crash / exploit active */
+    --accent-green:  #4ade80;   /* success / shell obtained / running */
+    --accent-blue:   #38bdf8;   /* info / memory address / focus */
+    --accent-yellow: #fbbf24;   /* warning / breakpoint / attention */
+    --accent-purple: #a78bfa;   /* ROP gadget / injected code */
+    --accent-orange: #fb923c;   /* modified / unsaved / caution */
+    --accent-cyan:   #22d3ee;   /* syscall / network / pointer */
+    --accent-pink:   #f472b6;   /* string / heap chunk */
+
+    /* Semantic aliases (maps to accents) */
+    --color-danger:  var(--accent-red);
+    --color-warning: var(--accent-yellow);
+    --color-success: var(--accent-green);
+    --color-info:    var(--accent-blue);
+    --color-rop:     var(--accent-purple);
+
+    /* Spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+
+    /* Border radius */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+    --shadow-glow-red:    0 0 8px rgba(230,57,70,0.35);
+    --shadow-glow-blue:   0 0 8px rgba(56,189,248,0.35);
+    --shadow-glow-purple: 0 0 8px rgba(167,139,250,0.35);
+
+    /* Platform font (overridden by .platform-* classes below) */
+    --font-ui:   "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+
+    /* Animation */
+    --duration-fast:   80ms;
+    --duration-normal: 150ms;
+    --duration-slow:   250ms;
+    --ease-default:    cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Light theme ─────────────────────────────────────────────────────────── */
+  .theme-light {
+    --bg-base:      #f4f4f5;
+    --bg-surface:   #ffffff;
+    --bg-elevated:  #f1f5f9;
+    --bg-overlay:   #e8edf5;
+    --border:       #e2e8f0;
+    --border-focus: #0369a1;
+    --text-primary: #0f172a;
+    --text-muted:   #475569;
+    --text-dim:     #94a3b8;
+    --accent-red:    #dc2626;
+    --accent-green:  #16a34a;
+    --accent-blue:   #0369a1;
+    --accent-yellow: #d97706;
+    --accent-purple: #7c3aed;
+    --accent-orange: #ea580c;
+    --accent-cyan:   #0891b2;
+    --accent-pink:   #be185d;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+    --shadow-glow-red:    0 0 8px rgba(220,38,38,0.2);
+    --shadow-glow-blue:   0 0 8px rgba(3,105,161,0.2);
+    --shadow-glow-purple: 0 0 8px rgba(124,58,237,0.2);
+  }
+
+  /* ── Platform-native fonts ───────────────────────────────────────────────── */
+  .platform-mac {
+    --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  }
+  .platform-windows {
+    --font-ui: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  }
+  .platform-linux {
+    --font-ui: "Inter", "Noto Sans", system-ui, sans-serif;
+  }
+
+  /* ── Accessibility: reduced motion ──────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-fast:   0ms;
+      --duration-normal: 0ms;
+      --duration-slow:   0ms;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ── Accessibility: high contrast ───────────────────────────────────────── */
+  @media (prefers-contrast: more) {
+    :root {
+      --border: #4a5568;
+      --text-muted: #94a3b8;
+      --text-dim:   #64748b;
+    }
+  }
+
+  /* ── Base body styles ────────────────────────────────────────────────────── */
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    line-height: 1.5;
+    user-select: none;
+    -webkit-user-select: none;
+    /* GPU-composited layer for smooth repaints */
+    will-change: auto;
+  }
+
+  /* ── Scrollbars ──────────────────────────────────────────────────────────── */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  *::-webkit-scrollbar              { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track        { background: transparent; }
+  *::-webkit-scrollbar-thumb        { background-color: var(--border); border-radius: 3px; }
+  *::-webkit-scrollbar-thumb:hover  { background-color: var(--text-dim); }
+
+  /* macOS: overlay scrollbars */
+  .platform-mac * {
+    scrollbar-width: none;
+  }
+  .platform-mac *::-webkit-scrollbar { width: 0; height: 0; }
+  .platform-mac *:hover::-webkit-scrollbar { width: 6px; height: 6px; }
+  .platform-mac *:hover::-webkit-scrollbar-thumb { background-color: var(--text-dim); }
+
+  /* ── Text selection ──────────────────────────────────────────────────────── */
+  .selectable { user-select: text; -webkit-user-select: text; }
+
+  /* ── Focus ring ──────────────────────────────────────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Surfaces */
+  .bg-base     { background-color: var(--bg-base); }
+  .bg-surface  { background-color: var(--bg-surface); }
+  .bg-elevated { background-color: var(--bg-elevated); }
+  .bg-overlay  { background-color: var(--bg-overlay); }
+
+  /* Text */
+  .text-muted  { color: var(--text-muted); }
+  .text-dim    { color: var(--text-dim); }
+
+  /* Accents */
+  .accent-red    { color: var(--accent-red); }
+  .accent-green  { color: var(--accent-green); }
+  .accent-blue   { color: var(--accent-blue); }
+  .accent-yellow { color: var(--accent-yellow); }
+  .accent-purple { color: var(--accent-purple); }
+  .accent-orange { color: var(--accent-orange); }
+  .accent-cyan   { color: var(--accent-cyan); }
+
+  /* Semantic */
+  .text-danger  { color: var(--color-danger); }
+  .text-warning { color: var(--color-warning); }
+  .text-success { color: var(--color-success); }
+  .text-info    { color: var(--color-info); }
+  .text-rop     { color: var(--color-rop); }
+
+  /* Borders */
+  .panel-border { border-color: var(--border); }
+  .border-focus { border-color: var(--border-focus); }
+
+  /* Shadows */
+  .shadow-glow-red    { box-shadow: var(--shadow-glow-red); }
+  .shadow-glow-blue   { box-shadow: var(--shadow-glow-blue); }
+  .shadow-glow-purple { box-shadow: var(--shadow-glow-purple); }
+
+  /* Animations */
+  .fade-in  { animation: fadeIn var(--duration-normal) var(--ease-default); }
+  .slide-up { animation: slideUp var(--duration-normal) var(--ease-default); }
+  .scale-in { animation: scaleIn var(--duration-fast) var(--ease-default); }
+
+  @keyframes fadeIn  { from { opacity: 0; }                    to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.96); }     to { opacity: 1; transform: scale(1); } }
+
+  /* Panel drag handle hover state */
+  .drag-handle {
+    transition: background-color var(--duration-fast);
+  }
+  .drag-handle:hover {
+    background-color: var(--accent-blue);
+    opacity: 0.6;
+  }
+  .drag-handle:active {
+    background-color: var(--accent-blue);
+    opacity: 1;
+  }
+}
+
+/* ── xterm.js overrides ──────────────────────────────────────────────────── */
+.xterm-viewport { background: transparent !important; }
+.xterm { padding: 8px; }

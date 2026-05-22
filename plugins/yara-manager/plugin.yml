@@ -1,0 +1,38 @@
+name: YARA Manager
+id: nullforge.yara-manager
+version: 1.0.3
+author: Threat Intel Collective
+description: Full-featured YARA rule editor with syntax highlighting, scanner integration, rule tester, and a curated community rule library for malware classification
+icon: scan-line
+license: Apache-2.0
+repository: https://github.com/threatintel/nullforge-yara
+homepage: https://nullforge.dev/plugins/yara-manager
+
+activationEvents:
+  - onLanguage:yara
+  - onCommand:yara.scan
+
+contributes:
+  commands:
+    - id: yara.newRule
+      title: "YARA: New Rule"
+    - id: yara.scan
+      title: "YARA: Scan File"
+    - id: yara.scanDirectory
+      title: "YARA: Scan Directory"
+    - id: yara.validateRule
+      title: "YARA: Validate Rule"
+    - id: yara.importLibrary
+      title: "YARA: Import Rule Library"
+  panels:
+    - id: yaraRules
+      title: "YARA Rules"
+      location: sidebar
+    - id: yaraScanResults
+      title: "Scan Results"
+      location: bottom
+
+permissions:
+  - shell
+  - filesystem
+  - aiContext

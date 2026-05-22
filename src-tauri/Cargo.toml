@@ -1,0 +1,46 @@
+[package]
+name = "nullforge"
+version = "0.1.0"
+description = "NullForge — AI-Powered Exploit Development Platform"
+authors = ["Joas A Santos"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "nullforge_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-notification = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.31", features = ["bundled"] }
+uuid = { version = "1", features = ["v4"] }
+reqwest = { version = "0.12", features = ["json", "stream"] }
+futures-util = "0.3"
+# Phase 6 — disassembler
+capstone = "0.12"
+object = { version = "0.36", features = ["read"] }
+# Phase 7 — plugin system
+serde_yaml = "0.9"
+walkdir = "2"
+# Phase 8 — utilities
+base64 = "0.22"
+# Shell PTY support
+portable-pty = "0.8"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

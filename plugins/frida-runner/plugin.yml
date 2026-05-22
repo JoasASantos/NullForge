@@ -1,0 +1,40 @@
+name: Frida Runner
+id: nullforge.frida-runner
+version: 2.1.0
+author: Dynamic Analysis Labs
+description: Frida script runner with device manager, process attachment, memory scanning, function hooking, and real-time output streaming inside NullForge
+icon: zap
+license: MIT
+repository: https://github.com/dynamic-analysis-labs/nullforge-frida
+homepage: https://nullforge.dev/plugins/frida-runner
+
+activationEvents:
+  - onCommand:frida.attach
+
+contributes:
+  commands:
+    - id: frida.attach
+      title: "Frida: Attach to Process"
+    - id: frida.spawn
+      title: "Frida: Spawn and Attach"
+    - id: frida.listDevices
+      title: "Frida: List Devices"
+    - id: frida.listProcesses
+      title: "Frida: List Processes"
+    - id: frida.runScript
+      title: "Frida: Run Active Script"
+    - id: frida.dumpMemory
+      title: "Frida: Dump Memory Region"
+  panels:
+    - id: fridaDevices
+      title: "Frida Devices"
+      location: sidebar
+    - id: fridaConsole
+      title: "Frida Console"
+      location: bottom
+
+permissions:
+  - shell
+  - network
+  - filesystem
+  - aiContext

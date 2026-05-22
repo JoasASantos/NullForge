@@ -1,0 +1,35 @@
+name: CyberChef Operations
+id: nullforge.cyberchef
+version: 1.5.2
+author: NullForge Community
+description: CyberChef-style data transformation panel — encode/decode, hash, encrypt, format convert, and apply recipe chains to binary or text data directly inside NullForge
+icon: chef-hat
+license: Apache-2.0
+repository: https://github.com/community/nullforge-cyberchef
+homepage: https://nullforge.dev/plugins/cyberchef
+
+activationEvents:
+  - onCommand:chef.openPanel
+
+contributes:
+  commands:
+    - id: chef.openPanel
+      title: "CyberChef: Open Operations Panel"
+    - id: chef.encodeBase64
+      title: "CyberChef: Encode Base64"
+    - id: chef.decodeBase64
+      title: "CyberChef: Decode Base64"
+    - id: chef.hashSha256
+      title: "CyberChef: SHA-256 Hash"
+    - id: chef.hexDump
+      title: "CyberChef: Hex Dump"
+    - id: chef.runRecipe
+      title: "CyberChef: Run Recipe"
+  panels:
+    - id: chefPanel
+      title: "CyberChef"
+      location: sidebar
+
+permissions:
+  - filesystem
+  - aiContext

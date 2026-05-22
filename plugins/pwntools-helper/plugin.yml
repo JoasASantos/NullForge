@@ -1,0 +1,34 @@
+name: pwntools Helper
+id: nullforge.pwntools-helper
+version: 0.9.1
+author: Binary Exploitation Community
+description: pwntools integration — auto-generate pwn context, cyclic patterns, ROP helpers, and format string utilities inside the NullForge editor
+icon: wrench
+license: MIT
+repository: https://github.com/community/nullforge-pwntools
+homepage: https://nullforge.dev/plugins/pwntools-helper
+
+activationEvents:
+  - onLanguage:python
+
+contributes:
+  commands:
+    - id: pwn.genContext
+      title: "pwntools: Generate pwn context snippet"
+    - id: pwn.cyclic
+      title: "pwntools: Insert cyclic pattern"
+    - id: pwn.ropGadget
+      title: "pwntools: Find ROP gadgets"
+    - id: pwn.fmtString
+      title: "pwntools: Format string helper"
+    - id: pwn.runLocal
+      title: "pwntools: Run exploit against local binary"
+  panels:
+    - id: pwnContext
+      title: "Pwn Context"
+      location: sidebar
+
+permissions:
+  - shell
+  - filesystem
+  - aiContext
